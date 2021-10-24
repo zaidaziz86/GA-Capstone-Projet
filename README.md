@@ -52,3 +52,4 @@ In a future iteration of this model, I want to look into hyper-parameter tuning 
 * [`machinelearningplus.com`](https://www.machinelearningplus.com/time-series/arima-model-time-series-forecasting-python/)
 * [`Facebook Prophet Quick Start`](https://facebook.github.io/prophet/docs/quick_start.html#python-api)
 * [`Deploying A FB Prophet model by: Edward Krueger`](https://towardsdatascience.com/deploying-a-prophet-forecasting-model-with-streamlit-to-heroku-caf1729bd917)
+* [`Chicago Python Users Group: tour of FB Prophet`](https://www.youtube.com/watch?v=95-HMzxsghY)
