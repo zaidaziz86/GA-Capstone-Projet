@@ -2,31 +2,14 @@ import pandas as pd
 import requests
 import streamlit as st
 import numpy as np
-from datetime import date
+import datetime as dt
 from matplotlib import pyplot as plt
 from prophet import Prophet
 from prophet.plot import plot_plotly
-
-@st.cache
-def get_data():
-    """
-    This function will load the dataset from the 
-    EIA API, resample the Dataframe based on the timeframe
-    and retrun a dataframe in the way FB Prophet
-    Can use.
-    """
-    api_key = 'b2feda39010110d402b5f247671cd0f6'
-    url = 'http://api.eia.gov/series/?api_key='+ api_key +'&series_id=EBA.TEX-ALL.NG.WND.HL'
-    r = requests.get(url)
-    json_data = r.json()
-    prof_df = pd.DataFrame(json_data['series'][0]['data'], columns=['ds', 'y'])
-    prof_df.ds = pd.to_datetime(prof_df.ds, utc=True)
-    prof_df['ds'] = prof_df['ds'].dt.tz_localize(None)
-    return prof_df
+from get_data import get_data
 
 HOURLY = 'HOURLY'
-WEEKLY = 'WEEKLY'
-
+#WEEKLY = 'WEEKLY'
 
 @st.cache(allow_output_mutation=True)
 def make_forecast(selection):
@@ -39,20 +22,27 @@ def make_forecast(selection):
         x_label = "Time (Hourly)"
         y_label = "Power mWh"
 
-    
-    prophet_df = get_data()
-    model = Prophet().fit(prophet_df)
-    future = model.make_future_dataframe(periods=7)
+    model = Prophet(interval_width=0.95,
+    yearly_seasonality=True,
+    daily_seasonality=True,
+    seasonality_prior_scale=1)
+    model.fit(get_data())
+    future = model.make_future_dataframe(periods=30)
     forecast = model.predict(future)
 
     fig = model.plot(forecast, uncertainty=True)
-    #fig.update_layout(title=title, yaxis_title=y_label , xaxis_title=x_label)
-
-
-    return fig
-
+    plt.ylim(bottom=0, top=30000)
+    plt.xlim([dt.date(2021,10,1), dt.date(2021,11,1)])
+    plt.title("Hourly Data with Forecast", fontsize=20)
+    plt.xlabel("Date (Hourly)", fontsize=16)
+    plt.ylabel("Power Output (Hourly)", fontsize=16)
+    
+    return fig, forecast
 st.write("# Texas Wind Power Generation")
-selected_series = st.selectbox("Select a timeframe:", (HOURLY, WEEKLY))
 
-plotly_fig = make_forecast(selected_series)
-st.line_chart(plotly_fig)
+selected_series = st.sidebar.selectbox("Select a timeframe:", [HOURLY])
+fig, forecast = make_forecast(selected_series)
+
+st.pyplot(fig)
+
+st.dataframe(forecast[['ds', 'yhat', 'yhat_lower', 'yhat_upper']].iloc[-90:])
