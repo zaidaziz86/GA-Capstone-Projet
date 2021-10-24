@@ -29,7 +29,7 @@ A combination of seven power sources supply the Texas power grid, these include 
 
 
 #### Data Included Streamlit application
-*[`EIA API for Texas`](https://www.eia.gov/opendata/qb.php?category=3390202&sdid=EBA.TEX-ALL.TI.HL): EIA API to update Streamlit app.
+* [`EIA API for Texas`](https://www.eia.gov/opendata/qb.php?category=3390202&sdid=EBA.TEX-ALL.TI.HL): EIA API to update Streamlit app.
 
 ### Model Selection and Performance
 | Model | #1 ARIMA | #2 Auto-ARIMA| #3 Prophet (basline)| #4 Prophet (Seasonality)|
@@ -45,3 +45,10 @@ Returning to our problem statement can we build a model to accurately forecast t
 Predicting windpower output is synonymous with predicting the weather.  Time series models predict the overall trend of the data, and they attempt to model in seasonal shocks to the trend of the data. In our case, the shocks to the system are the movements of high and low-pressure systems.
 
 In a future iteration of this model, I want to look into hyper-parameter tuning using cross-validation of the prophet model. I didn't look into tuning the "changepoint_prior_scale", and "seasonality_prior_scale", which determines the flexibility of the trend, and in particular how much the trend changes at changepoints either seasonally, or in one season.  I also want to look into how the predictions are affected by changing the sample rate and seeing if the model forecasts daily or weekly data better than hourly.  
+
+### References
+
+* [`German Wind Power Generation EDA+Forecasting`](https://www.kaggle.com/ggopinathan/german-wind-power-generation-eda-forecasting#Time-Series-Modeling)
+* [`machinelearningplus.com`](https://www.machinelearningplus.com/time-series/arima-model-time-series-forecasting-python/)
+* [`Facebook Prophet Quick Start`](https://facebook.github.io/prophet/docs/quick_start.html#python-api)
+* [`Deploying A FB Prophet model by: Edward Krueger`](https://towardsdatascience.com/deploying-a-prophet-forecasting-model-with-streamlit-to-heroku-caf1729bd917)
