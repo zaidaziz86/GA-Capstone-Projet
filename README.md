@@ -14,13 +14,34 @@ A combination of seven power sources supply the Texas power grid, these include 
 * [`texas_power_gen.csv`](../Data/texas_power_gen.csv): EIA Power Generation Data for ERCOT.
 * [`U.S. Energy Information Administration (EIA) - ERCOT Power Data`](https://www.eia.gov/electricity/gridmonitor/dashboard/electric_overview/balancing_authority/ERCO): EIA website for ERCOT Grid.
 
+#### Data Dictionary
+
+|Feature|Type|Dataset|Description|
+|---|---|---|---|
+|**Datime**|*datetime64*|`texas_power_gen.csv`| Datetime index of dataframe (Hourly). |
+|**coal_mwh**|*int64*|`texas_power_gen.csv`| ERCOT Hourly power generation from Coal Plants |
+|**hydro_mwh**|*int64*|`texas_power_gen.csv`| ERCOT Hourly power generation from Hydo-Electric Plants |
+|**nuclear_mwh**|*int64*|`texas_power_gen.csv`| ERCOT Hourly power generation from Nuclear Plants |
+|**other_sources_mwh**|*int64*|`texas_power_gen.csv`| ERCOT Hourly power generation from Other Sources |
+|**solar_sources_mwh**|*int64*|`texas_power_gen.csv`| ERCOT Hourly power generation from Solar Generation |
+|**wind_sources_mwh**|*int64*|`texas_power_gen.csv`| ERCOT Hourly power generation from Wind Plants |
+|**demand_mwh**|*int64*|`texas_power_gen.csv`| ERCOT Hourly power demand |
+
 
 #### Data Included Streamlit application
 *[`EIA API for Texas`](https://www.eia.gov/opendata/qb.php?category=3390202&sdid=EBA.TEX-ALL.TI.HL): EIA API to update Streamlit app.
 
-### Model Selection and performance
+### Model Selection and Performance
 | Model | #1 ARIMA | #2 Auto-ARIMA| #3 Prophet (basline)| #4 Prophet (Seasonality)|
 |:-----:| :-----:| :-----: | :-----:| :-----: |
 | Baseline RMSE mWh | 6620 | 6620 | 6504 | 6504 |
 | MSE | 125 E6 | 143 E6 | 37 E6 | 34 E6 |
 | RMSE | 11k | 12k | 6.1k | 5.9k |
+
+### Conclusions and Recommendations
+
+Returning to our problem statement can we build a model to accurately forecast the wind-power output for the ERCOT grid better than our null model of the mean. The answer is yes using our final prophet model, which included yearly and daily seasonality. Predicting better than the mean of our test data is not a huge feat our RMSE was 5902 MWH which is about 25% - 33% of our 95% confidence interval; however, we did learn that with this data Facebook prophet performed better than our 2 SARIMA models.
+
+Predicting windpower output is synonymous with predicting the weather.  Time series models predict the overall trend of the data, and they attempt to model in seasonal shocks to the trend of the data. In our case, the shocks to the system are the movements of high and low-pressure systems.
+
+In a future iteration of this model, I want to look into hyper-parameter tuning using cross-validation of the prophet model. I didn't look into tuning the "changepoint_prior_scale", and "seasonality_prior_scale", which determines the flexibility of the trend, and in particular how much the trend changes at changepoints either seasonally, or in one season.  I also want to look into how the predictions are affected by changing the sample rate and seeing if the model forecasts daily or weekly data better than hourly.  
