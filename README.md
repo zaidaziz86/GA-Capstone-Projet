@@ -32,7 +32,10 @@ A combination of seven power sources supply the Texas power grid, these include 
 * [`EIA API for Texas`](https://www.eia.gov/opendata/qb.php?category=3390202&sdid=EBA.TEX-ALL.TI.HL): EIA API to update Streamlit app.
 
 ### Model Selection and Performance
-| Model | #1 ARIMA | #2 Auto-ARIMA| #3 Prophet (basline)| #4 Prophet (Seasonality)|
+
+With four years of hourly wind data provided by the US Energy Information Administration. I created four models to forecast the next month of wind power generation. These models included: A ARIMA models which I chose the p, d, q. An Auto-ARIMA model, FB Prophet, FB Prophet with Hyper-parameters. Results are show below.
+
+| Model | #1 ARIMA | #2 Auto-ARIMA| #3 Prophet (baseline)| #4 Prophet (Seasonality)|
 |:-----:| :-----:| :-----: | :-----:| :-----: |
 | Baseline RMSE mWh | 6620 | 6620 | 6504 | 6504 |
 | MSE | 125 E6 | 143 E6 | 37 E6 | 34 E6 |
@@ -42,12 +45,13 @@ A combination of seven power sources supply the Texas power grid, these include 
 
 Returning to our problem statement can we build a model to accurately forecast the wind-power output for the ERCOT grid better than our null model of the mean. The answer is yes using our final prophet model, which included yearly and daily seasonality. Predicting better than the mean of our test data is not a huge feat our RMSE was 5902 MWH which is about 25% - 33% of our 95% confidence interval; however, we did learn that with this data Facebook prophet performed better than our 2 SARIMA models.
 
-Predicting windpower output is synonymous with predicting the weather.  Time series models predict the overall trend of the data, and they attempt to model in seasonal shocks to the trend of the data. In our case, the shocks to the system are the movements of high and low-pressure systems.
+Predicting wind power output is synonymous with predicting the weather.  Time series models predict the overall trend of the data, and they attempt to model in seasonal shocks to the trend of the data. In our case, the shocks to the system are the movements of high and low-pressure systems.
 
 In a future iteration of this model, I want to look into hyper-parameter tuning using cross-validation of the prophet model. I didn't look into tuning the "changepoint_prior_scale", and "seasonality_prior_scale", which determines the flexibility of the trend, and in particular how much the trend changes at changepoints either seasonally, or in one season.  I also want to look into how the predictions are affected by changing the sample rate and seeing if the model forecasts daily or weekly data better than hourly.  
 
 ### References
 
+* [`EIA Website - data provider`](https://www.eia.gov/electricity/gridmonitor/expanded-view/custom/pending/GenerationByEnergySource-14/edit)
 * [`German Wind Power Generation EDA+Forecasting`](https://www.kaggle.com/ggopinathan/german-wind-power-generation-eda-forecasting#Time-Series-Modeling)
 * [`machinelearningplus.com`](https://www.machinelearningplus.com/time-series/arima-model-time-series-forecasting-python/)
 * [`Facebook Prophet Quick Start`](https://facebook.github.io/prophet/docs/quick_start.html#python-api)
