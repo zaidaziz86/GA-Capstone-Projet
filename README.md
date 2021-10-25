@@ -33,7 +33,7 @@ A combination of seven power sources supply the Texas power grid, these include 
 
 ### Model Selection and Performance
 
-With four years of hourly wind data provided by the US Energy Information Administration. I created four models to forecast the next month of wind power generation. These models included: A ARIMA models which I chose the p, d, q. An Auto-ARIMA model, FB Prophet, FB Prophet with Hyper-parameters. Results are show below.
+With four years of hourly wind data provided by the US Energy Information Administration. I created four models to forecast the next month of wind power generation. These models included: An ARIMA model which I chose the p, d, q, an Auto-ARIMA model, FB Prophet, FB Prophet with parameters. Results are show below.
 
 | Model | #1 ARIMA | #2 Auto-ARIMA| #3 Prophet (baseline)| #4 Prophet (Seasonality)|
 |:-----:| :-----:| :-----: | :-----:| :-----: |
@@ -43,7 +43,7 @@ With four years of hourly wind data provided by the US Energy Information Admini
 
 ### Conclusions and Recommendations
 
-Returning to our problem statement can we build a model to accurately forecast the wind-power output for the ERCOT grid better than our null model of the mean. The answer is yes using our final prophet model, which included yearly and daily seasonality. Predicting better than the mean of our test data is not a huge feat our RMSE was 5902 MWH which is about 25% - 33% of our 95% confidence interval; however, we did learn that with this data Facebook prophet performed better than our 2 SARIMA models.
+Returning to our problem statement can we build a model to accurately forecast the wind-power output for the ERCOT grid better than our null model of the mean. The answer is yes using our final prophet model, which included yearly and daily seasonality. Predicting better than the mean of our test data is not a huge feat our model RMSE was 5902 MWH which is about 25% - 33% of our 95% confidence interval; however, we did learn that with this data Facebook Prophet performed better than our 2 SARIMA models. If this model were to be implemented we would use it more for inference using the 95% confidence interval, we could state that we are 95% "confident", that the wind power output is in that interval.
 
 Predicting wind power output is synonymous with predicting the weather.  Time series models predict the overall trend of the data, and they attempt to model in seasonal shocks to the trend of the data. In our case, the shocks to the system are the movements of high and low-pressure systems.
 
