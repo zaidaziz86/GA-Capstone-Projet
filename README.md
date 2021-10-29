@@ -38,8 +38,8 @@ With four years of hourly wind data provided by the US Energy Information Admini
 | Model | #1 ARIMA | #2 Auto-ARIMA| #3 Prophet (baseline)| #4 Prophet (Seasonality)|
 |:-----:| :-----:| :-----: | :-----:| :-----: |
 | Baseline RMSE mWh | 6620 | 6620 | 6504 | 6504 |
-| MSE | 125 E6 | 143 E6 | 37 E6 | 34 E6 |
-| RMSE | 11k | 12k | 6.1k | 5.9k |
+| MSE mWh| 125 E6 | 143 E6 | 37 E6 | 34 E6 |
+| RMSE mWh| 11k | 12k | 6.1k | 5.9k |
 
 ### Conclusions and Recommendations
 
