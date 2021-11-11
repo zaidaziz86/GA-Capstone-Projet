@@ -33,7 +33,7 @@ A combination of seven power sources supply the Texas power grid, these include 
 
 ### Exploratory Data Analysis
 
-![Energy Mix of ERCOT](../Data/ERCOT_energy_mix.png)
+![Energy Mix of ERCOT](./Data/ERCOT_energy_mix.png)
 
 ### Model Selection and Performance
 
