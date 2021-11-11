@@ -32,8 +32,8 @@ A combination of seven power sources supply the Texas power grid, these include 
 * [`EIA API for Texas`](https://www.eia.gov/opendata/qb.php?category=3390202&sdid=EBA.TEX-ALL.TI.HL): EIA API to update Streamlit app.
 
 ### Exploratory Data Analysis
-
-![Energy Mix of ERCOT](./Data/ERCOT_energy_mix.png)
+<p align="center">
+  ![Energy Mix of ERCOT](./Data/ERCOT_energy_mix.png)
 <p align="center">
   <b> Some Text</b>
 
