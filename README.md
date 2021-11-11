@@ -31,6 +31,10 @@ A combination of seven power sources supply the Texas power grid, these include 
 #### Data Included Streamlit application
 * [`EIA API for Texas`](https://www.eia.gov/opendata/qb.php?category=3390202&sdid=EBA.TEX-ALL.TI.HL): EIA API to update Streamlit app.
 
+### Exploratory Data Analysis
+
+![Energy Mix of ERCOT](../Data/ERCOT_energy_mix.png)
+
 ### Model Selection and Performance
 
 With four years of hourly wind data provided by the US Energy Information Administration. I created four models to forecast the next month of wind power generation. These models included: An ARIMA model which I chose the p, d, q, an Auto-ARIMA model, FB Prophet, FB Prophet with parameters. Results are show below.
