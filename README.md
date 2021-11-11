@@ -32,10 +32,15 @@ A combination of seven power sources supply the Texas power grid, these include 
 * [`EIA API for Texas`](https://www.eia.gov/opendata/qb.php?category=3390202&sdid=EBA.TEX-ALL.TI.HL): EIA API to update Streamlit app.
 
 ### Exploratory Data Analysis
-<p align="center">
+
 ![Energy Mix of ERCOT](./Data/ERCOT_energy_mix.png)
-<p align="center">
-  <b> Some Text</b>
+The Above Figure shows the Energy mix of the ERCOT power grid for the last three years.
+
+![](./Data/energy_mix_over_time.png)
+Energy portfolio of ERCOT over the last four years showing a reduction of fossil fuel usage, and an increase of renewable power options.
+
+![](./Data/winter_power_outage.png)
+An example of the 2021 winter storm, A time when the power grid could not supply the necessary power due to a natural gas shortfall.
 
 ### Model Selection and Performance
 
